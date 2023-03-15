@@ -14,42 +14,66 @@
     <h1>Hashwanth Gogineni speed check</h1>
     <br>
 
-    <div id="target">Your time</div><br>
-
-    <div id="counter">Count</div><br>
-
-    <div>
-        <input type="button" class="btn btn-primary" onclick="startTime()" value="Start Timer">
-        <input type="button" class="btn btn-primary" onclick="recordTime()" value="React">
-    </div>
-
-    <script>
-        var reactTime = undefined
-
-        function recordTime() {
-            reactTime = Date.now()
-            console.log(reactTime)
+    <div id="target">Time was</div>
+    <br>
+    <div id="counter">Count</div><p id="countdown"></p>
+    <button type="button"
+    class="btn btn-primary"
+    onclick="startTime()">
+    Start Timer</button>
+    <button type="button"
+    class="btn btn-primary"
+    onclick="recordTime()">
+    React</button>
+    <br>
+   
+    
+    <script> 
+        let reactTime 
+        function recordTime(){
+          reactTime=undefined;
+          //Set(reactTime)= new Date.now();
+          reactTime= Date.now();
+          console.log(reactTime);
         }
-
-        function startTime() {
-            for (let i = 0; i < 9; i++) {
-                setTimeout(
-                    function () {
-                        document.getElementById('counter').innerHTML = i
-                    }, (8 - i) * 1000)
-            }
-            setTimeout(
-                function () {
-                    if(reactTime == undefined){
-                        document.getElementById('target').innerHTML = "Too Slow"
-                    }
-                    else{
-                        let endTime = Date.now()
-                        document.getElementById('target').innerHTML = "Time was "+(endTime-reactTime)
-                    }
-                }, 8000)
-        }
-    </script>
+        let i=0;
+      
+        let rv=Math.floor((Math.random() * 10) + 2);
+        //let rv=Math.floor((Math.random() * 10) + 2);
+        function startTime(){
+           rv=Math.floor((Math.random() * 10) + 2);
+          for( i=0;i<rv;i++){
+              console.log(rv);
+              setTimeou(i); 
+          }
+      
+          
+        setTimeout( () => {
+              console.log("Entered anononymouse fn");
+               if(reactTime==undefined){
+                  console.log("entered if");
+                  document.getElementById('target').innerHTML="Too Slow";
+               }
+               else{
+                  console.log("entered else");
+                  let endTime;
+                  endTime=Date.now();
+                  console.log("endtime is"+endTime);
+                  let temp=endTime-reactTime;
+                  console.log(temp);
+                  document.getElementById('target').innerHTML="Time was "+temp;
+               }
+              },8*1000);
+          }
+          
+          function setTimeou(i)
+         {
+              setTimeout(()=>{
+                      document.getElementById('countdown').innerHTML=i;
+                  },(rv-i)*1000);
+          }
+        
+        </script>
 
 </body>
 </html>
